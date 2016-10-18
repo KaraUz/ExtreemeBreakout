@@ -6,6 +6,8 @@ public class BlockController : MonoBehaviour {
     public int health=7;
     private Color[] healtColor;
     Renderer rend;
+    public int blockScoreValue=10;
+    private GameControllerScript gameController;
     // Use this for initialization
     void Start()
     {
@@ -22,6 +24,17 @@ public class BlockController : MonoBehaviour {
         rend = GetComponent<Renderer>();
         rend.material.shader = Shader.Find("Specular");
         rend.material.SetColor("_Color", healtColor[health]);
+
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            Debug.Log("getting script");
+            gameController = gameControllerObject.GetComponent<GameControllerScript>();
+        }
+        if (gameController == null)
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
     }
 
     // Update is called once per frame
@@ -36,8 +49,12 @@ public class BlockController : MonoBehaviour {
         if (col.collider.tag.Equals("Ball"))
         {
             if(health>0)health--;
+            gameController.AddScore(blockScoreValue);
             rend.material.SetColor("_Color", healtColor[health]);
-            if(health==0)Destroy(gameObject);
+            if (health == 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
