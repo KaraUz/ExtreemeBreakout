@@ -18,6 +18,7 @@ public class MainMenuController : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
+        Debug.Log("scene " + sceneName + "loading");
         SceneManager.LoadScene(sceneName);
     }
 
