@@ -4,8 +4,9 @@ using System.Collections;
 public class MovementScript : MonoBehaviour {
     private Rigidbody rb;
     public float Speed = 10;
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start ()
     {
         rb = transform.GetComponent<Rigidbody>();
 	}

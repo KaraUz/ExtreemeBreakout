@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BallController : MonoBehaviour
 {
-
     private Rigidbody rb;
 
     // Use this for initialization
@@ -23,9 +22,6 @@ public class BallController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Velocity: " + rb.velocity);
-        
-
-
         //rb.AddForce(new Vector3(0, 1000, 0));
     }
 }
