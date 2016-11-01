@@ -9,7 +9,7 @@ public class BallController : MonoBehaviour
     void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
-        rb.velocity=new Vector3(0, 0, -40);
+        rb.velocity = new Vector3(0, 0, -40);
     }
 
     // Update is called once per frame

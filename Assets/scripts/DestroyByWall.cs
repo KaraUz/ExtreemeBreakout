@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DestroyByWall : MonoBehaviour
 {
+    public bool enableScript;
+
     private GameController gameController;
 
 	// Use this for initialization
@@ -27,10 +29,13 @@ public class DestroyByWall : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ball")
+        if (enableScript)
         {
-            Destroy(collision.gameObject);
-            gameController.RemoveBall();
+            if (collision.gameObject.tag == "Ball")
+            {
+                Destroy(collision.gameObject);
+                gameController.RemoveBall();
+            }
         }
     }
 }
