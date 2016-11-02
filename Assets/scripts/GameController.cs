@@ -18,8 +18,8 @@ public class GameController : MonoBehaviour
         gameOver = false;
         gameOverText.text = "";
         score = 0;
-        //highScore = PlayerPrefs.GetInt("High Score");
-        //highScoreText.text = "High score: " + highScore;
+        highScore = PlayerPrefs.GetInt("Score1");
+        UpdateHighScore();
         UpdateScore();
     }
 
@@ -43,6 +43,11 @@ public class GameController : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    void UpdateHighScore()
+    {
+        highScoreText.text = "Highscore: " + highScore;
+    }
+
     public void AddBall()
     {
         numberOfBalls++;
@@ -64,7 +69,16 @@ public class GameController : MonoBehaviour
 
     private void GameOver()
     {
-        gameOverText.text = "Game Over!";
-        gameOver = true;
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("Score1", score);
+            gameOverText.text = "Game Over!\nNEW HIGHSCORE!!!";
+            gameOver = true;
+        }
+        else
+        {
+            gameOverText.text = "Game Over!";
+            gameOver = true;
+        }
     }
 }
