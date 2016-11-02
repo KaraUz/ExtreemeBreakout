@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour
     private int highScore = 0;
     private bool gameOver;
     private int score;
+    public string SceneName;
 
     void Start()
     {
@@ -23,7 +25,11 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Debug.Log("scene " + SceneName + "loading");
+            SceneManager.LoadScene(SceneName);
+        }
     }
 
     public void AddScore(int score)

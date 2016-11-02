@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HighscoreController : MonoBehaviour {
     private Text text;
 
-	// Use this for initialization
-	void Start () {
+    public string SceneName;
+
+    // Use this for initialization
+    void Start () {
         text = gameObject.GetComponent<Text>();
         text.text = "";
         for (int i = 1; i <= 11; i++)
@@ -21,6 +24,10 @@ public class HighscoreController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Debug.Log("scene " + SceneName + "loading");
+            SceneManager.LoadScene(SceneName);
+        }
+    }
 }
