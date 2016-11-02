@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BallController : MonoBehaviour
 {
+    public int initialForce;
+
     private Rigidbody rb;
     private bool isFree = false;
 
@@ -19,7 +21,7 @@ public class BallController : MonoBehaviour
             Debug.Log("Ball is free");
             isFree = true;
             transform.parent = null;
-            rb.velocity = new Vector3(0, 0, 40);
+            rb.velocity = new Vector3(0, 0, initialForce);
             rb.isKinematic = false;
         }
     }
@@ -28,7 +30,7 @@ public class BallController : MonoBehaviour
     void FixedUpdate()
     {
         if (isFree)
-            rb.velocity = rb.velocity.normalized * 40; // needed because we are loosing speed
+            rb.velocity = rb.velocity.normalized * initialForce; // needed because we are loosing speed
     }
 
     void OnCollisionEnter(Collision collision)
