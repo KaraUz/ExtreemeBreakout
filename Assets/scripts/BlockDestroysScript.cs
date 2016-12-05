@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BlockDestroysScript : MonoBehaviour
 {
-    public GameObject prefab;
+    
 	// Use this for initialization
 	void Start ()
     {
@@ -21,7 +21,6 @@ public class BlockDestroysScript : MonoBehaviour
         
         if (col.collider.tag.Equals("Ball"))
         {
-            Instantiate(prefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
