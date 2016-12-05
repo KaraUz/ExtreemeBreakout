@@ -38,4 +38,9 @@ public class DestroyByWall : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+    }
 }

@@ -8,7 +8,8 @@ public class BlockController : MonoBehaviour {
     Renderer rend;
     public int blockScoreValue=10;
     private GameController gameController;
-    
+    public GameObject prefab;
+
     void Start()
     {
         if (health > 7) health = 7;
@@ -55,6 +56,7 @@ public class BlockController : MonoBehaviour {
             rend.material.SetColor("_Color", healtColor[health]);
             if (health == 0)
             {
+                if(Random.Range(-10.0f, 10.0f)>4) Instantiate(prefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
