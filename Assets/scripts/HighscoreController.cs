@@ -29,5 +29,11 @@ public class HighscoreController : MonoBehaviour {
             Debug.Log("scene " + SceneName + "loading");
             SceneManager.LoadScene(SceneName);
         }
+        if (Input.GetKey(KeyCode.X))
+        {
+            Debug.Log("Resetting player prefs");
+            PlayerPrefs.DeleteAll();
+            Start();
+        }
     }
 }
