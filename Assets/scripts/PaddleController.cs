@@ -14,9 +14,18 @@ public class PaddleController : MonoBehaviour {
         {
             if (other.name.StartsWith("MultiplyPP"))
             {
+                int numberOfBalls = GameObject.Find("GameController").GetComponent<GameController>().GetNumberOfBalls();
                 foreach (var MPUS in GameObject.FindGameObjectsWithTag("Ball"))
                 {
-                    MPUS.GetComponent<MultiplyPowerUpScript>().enabled = true;
+                    if (numberOfBalls <= 3)
+                        MPUS.GetComponent<MultiplyPowerUpScript>().enabled = true;
+                    else if (numberOfBalls <= 10 )
+                    {
+                        if (Random.Range(1, 10) > 3)
+                            MPUS.GetComponent<MultiplyPowerUpScript>().enabled = true;
+                    }
+                    else if (Random.Range(1, 10) > 7)
+                            MPUS.GetComponent<MultiplyPowerUpScript>().enabled = true;
                 }
                 Destroy(other.gameObject);
             }

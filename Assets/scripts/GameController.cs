@@ -10,18 +10,22 @@ public class GameController : MonoBehaviour
     public Text newHighScoreNameText;
     public Canvas newHighScoreCanvas;
     public string highScoreSceneName = "HighScore_scene";
+    public string Menu;
+    public string nextSceneName;
+    public int numberOfBlocks;
 
     private int numberOfBalls = 1;
     private int highScore = 0;
     private bool gameOver;
     private int score;
-    public string SceneName;
 
     void Start()
     {
         gameOver = false;
         gameOverText.text = "";
         score = 0;
+        if (nextSceneName == Menu)
+            score = 500;
         highScore = PlayerPrefs.GetInt("Score1");
         UpdateHighScore();
         UpdateScore();
@@ -31,8 +35,8 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            Debug.Log("scene " + SceneName + "loading");
-            SceneManager.LoadScene(SceneName);
+            Debug.Log("scene " + Menu + "loading");
+            SceneManager.LoadScene(Menu);
         }
     }
 
@@ -52,6 +56,11 @@ public class GameController : MonoBehaviour
         highScoreText.text = "Highscore: " + highScore;
     }
 
+    public int GetNumberOfBalls()
+    {
+        return numberOfBalls;
+    }
+
     public void AddBall()
     {
         numberOfBalls++;
@@ -61,6 +70,20 @@ public class GameController : MonoBehaviour
     {
         numberOfBalls--;
         CheckGameOver();
+    }
+
+    public void RemoveBlock()
+    {
+        numberOfBlocks--;
+        Debug.Log("number of blocks: " + numberOfBlocks);
+        if (numberOfBlocks == 0)
+        {
+            Debug.Log("scene " + nextSceneName + "loading");
+            if (nextSceneName == Menu)
+                GameOver();
+            else
+                SceneManager.LoadScene(nextSceneName);
+        }
     }
 
     private void CheckGameOver()

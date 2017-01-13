@@ -59,6 +59,7 @@ public class BlockController : MonoBehaviour {
             {
                 if(Random.Range(0, 100.0f)<powerUpChance) Instantiate(prefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+                gameController.RemoveBlock();
             }
         }
     }
