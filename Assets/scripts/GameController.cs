@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour
     {
         for (int i = 1; i <= 11; i++)
         {         
-            if (PlayerPrefs.GetString("Name" + i) == null || PlayerPrefs.GetString("Name" + i) == "")
+            if (PlayerPrefs.GetString("Name" + i) == null || PlayerPrefs.GetString("Name" + i).Equals(""))
             {
                 PlayerPrefs.SetString("Name" + i, newHighScoreNameText.text);
                 PlayerPrefs.SetInt("Score" + i, score);
@@ -123,6 +123,14 @@ public class GameController : MonoBehaviour
             }
             else if(score>PlayerPrefs.GetInt("Score" + i))
             {
+                for (int j = 11; j > i; j--)
+                {
+                    if (PlayerPrefs.GetString("Name" + (j - 1)) != null && !PlayerPrefs.GetString("Name" + (j - 1)).Equals(""))
+                    {
+                        PlayerPrefs.SetString("Name" + j, PlayerPrefs.GetString("Name" + (j-1)));
+                        PlayerPrefs.SetInt("Score" + j, PlayerPrefs.GetInt("Score" + (j-1)));
+                    }   
+                }
                 PlayerPrefs.SetString("Name" + i, newHighScoreNameText.text);
                 PlayerPrefs.SetInt("Score" + i, score);
                 break;
